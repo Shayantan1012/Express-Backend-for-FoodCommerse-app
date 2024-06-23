@@ -30,15 +30,14 @@ const userSchema=new mongoose.Schema({
         trim:[true],
         unique:[true,"Email should be provided!!"],
         require:[true,"Email should be provided!!"],
-        match:['^[a-z0-9](\.?[a-z0-9]){5,}@g(oogle)?mail\.com$',"Please fill a valid email address!!!"],
-    },
+        match:  [/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/, 'Please fill a valid email address']    },
     password:{
         type:String,
         require:[true,"Password is manditory!!!"],
         minlength:[6,"Password should be minimum six charecter long!!!"],
     }
 },{
-    timestamps:[true],
+    timestamps:true,
 })
-const User=mongoose.model('User',userSchema);
+const User=mongoose.model("User",userSchema);
 module.exports=User;
