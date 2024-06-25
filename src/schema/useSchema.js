@@ -1,4 +1,5 @@
 const mongoose=require('mongoose');
+const bcrypt=require('bcrypt');
 const userSchema=new mongoose.Schema({
     firstname:{
         type:String,
@@ -39,5 +40,14 @@ const userSchema=new mongoose.Schema({
 },{
     timestamps:true,
 })
+
+userSchema.pre('save',async function (){
+    console.log("Executing the Pre !!!");
+    this.password= await bcrypt.hash(this.password,10);//hashed Password//
+    console.log(this.password);
+console.log(this);
+})
+
+
 const User=mongoose.model("User",userSchema);
 module.exports=User;

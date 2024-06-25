@@ -1,7 +1,6 @@
-const {module} =require('mongoose');
-function getcartById(){
+function getcartById(req,res){
     console.log("Get cart By ID !!!");
 }
-module.export={
+module.exports={
     getcartById
 }
