@@ -1,11 +1,8 @@
+const {findUser,createUser}=require('../reprositories/userRepository');
 class UserService{
 
-constructor(_userRepository){
-    this.userRepository=_userRepository;
-}
-
 async registerUser(userDetails){
-const user=await this.userRepository.findUser(
+const user=await findUser(
 {email:userDetails.email,
 mobilenumber : userDetails.mobilenumber,
 }
@@ -13,7 +10,7 @@ mobilenumber : userDetails.mobilenumber,
 if(user){
     throw{reason:'User with the same mobile number and email already exists!!! ',statusCode:400};
 }
-const newUser=await this.userRepository.createUser({
+const newUser=await createUser({
     email:userDetails.email,
     password:userDetails.password,
     firstname:userDetails.firstname,

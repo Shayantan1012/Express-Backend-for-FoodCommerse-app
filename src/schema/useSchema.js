@@ -43,7 +43,7 @@ const userSchema=new mongoose.Schema({
 
 userSchema.pre('save',async function (){
     console.log("Executing the Pre !!!");
-    this.password= await clearImmediatebcrypt.hash(this.password,10);//hashed Password//
+    this.password= await bcrypt.hash(this.password,10);//hashed Password//
     console.log(this.password);
 console.log(this);
 })
