@@ -1,4 +1,5 @@
 const jwt=require('jsonwebtoken');
+
 const { JWT_SECRET } = require('../config/serverConfig');
 
 async function isLoggedIn(req,res,next){
@@ -26,10 +27,13 @@ req.user={
  email:decoded.email,
  id:decoded.id,
 }
-
+console.log("In authValidation->");
+console.log(req.user);
+console.log("//////////////");
 next();
 
 }
 module.exports={
     isLoggedIn,
 }
+////
