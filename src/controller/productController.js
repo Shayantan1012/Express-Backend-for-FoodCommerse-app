@@ -9,7 +9,7 @@ try{
         price:req.body.price,
         catagory:req.body.catagory,
         inStock:req.body.inStock,
-        imagePath:req.file.path,
+        imagePath:req.file ?.path,
     })
     return res.status(201).json({
         success:true,

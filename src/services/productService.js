@@ -7,6 +7,7 @@ const NotFoundError = require('../utils/notFoundError');
 async function createProduct(productDetails){
         
 const imagePath=productDetails.imagePath;
+console.log(imagePath);
 if(imagePath){
     try{    const cloudanaryResponse= await  cloudinary.uploader.upload(imagePath);
         console.log(cloudanaryResponse);
