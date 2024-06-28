@@ -42,4 +42,4 @@ app.listen(ServerConfig.PORT, async()=>{
     await connectDB();
     console.log(`Server got started at port ${ServerConfig.PORT}!!!!!!`);
 });
-//0viUsU9ZINsriSNG
+//0viUsU9ZINsriSNG//
