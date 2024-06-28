@@ -9,6 +9,7 @@ const { isLoggedIn } = require('./validation/authValidation');
 const uploader = require('./Middleware/multerMiddleware');
 const cloudinary=require('./config/cloudinaryConfig');
 const fs=require('fs/promises');
+const productRouter = require('./routes/productRoutes');
 const app=express();
 
 app.use(express.json());
@@ -18,7 +19,9 @@ app.use(cookieParser());
 app.use('/users',userRouter);
 app.use('/cart',cartRouter);
 app.use('/auth',authRouter);
+app.use('/products',productRouter)
 ///////////////////////////////////
+/*
 app.post('/photo',uploader.single('incomingfile'),async(req,res)=>{
     console.log(req.file);
     const result=await  cloudinary.uploader.upload(req.file.path);
@@ -27,7 +30,7 @@ app.post('/photo',uploader.single('incomingfile'),async(req,res)=>{
     return res.json({
         message:'OK',
     });
-})
+})*/
 ////////////////////////////////////////////
 app.post('/ping',isLoggedIn,(req,res)=>{
     console.log(req.body);

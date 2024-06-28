@@ -22,7 +22,7 @@ const productSchema=mongoose.Schema({
         enum:['Veg','Non-Veg','Drinks','Sides'],
         default:'Veg',
     },
-    isStock:{
+    inStock:{
         type:Boolean,
         require:[true,"Stock status is required!!!"],
         default:true,
