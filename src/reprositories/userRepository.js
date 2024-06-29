@@ -1,4 +1,5 @@
 const User=require('../schema/useSchema');
+const Cart=require('../schema/cartSchema');
 
 async function findUser(parameters) {
     try{ 
@@ -11,8 +12,8 @@ console.log(error);
 } /////
 async function createUser(userDetails){
     try{
-        const response=await User.create(userDetails);
-        return response;        
+        const userResponse=await User.create(userDetails);
+        return userResponse;        
     }
 catch(error){
     console.log(error);

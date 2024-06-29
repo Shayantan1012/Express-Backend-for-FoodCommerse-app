@@ -12,8 +12,18 @@ if(!token){
         message:"No Auth token Provided!!!",
     })
 }
+try{
+var decoded=jwt.verify(token,JWT_SECRET);
+req.user={
+    email:decoded.email,
+    id:decoded.id,
+    role:decoded.role,
+   }
+   
+}catch(error){
 
-const decoded=jwt.verify(token,JWT_SECRET);
+}
+
 if(!decoded){
     return res.status(401).json({
         success:false,
@@ -23,17 +33,32 @@ if(!decoded){
     })
 }
 //If reach allow them to access api//
-req.user={
- email:decoded.email,
- id:decoded.id,
-}
-console.log("In authValidation->");
-console.log(req.user);
-console.log("//////////////");
 next();
+}
 
+/*
+This function checks is the autentication user is an Admin or not*/
+//Because we will call is Admin after is Logged in thats why we will recieve user details//
+async function isAdmin(req,res,next){
+const loggedInUser=req.user;
+console.log(loggedInUser);
+if(loggedInUser.role==="ADMIN"){
+    next();
+}
+else{
+    return res.status(404).json({
+        success:false,
+        data:{},
+        message:'You are not a Authorised User!!!!',
+        error:{
+            statusCode:401,
+            reason:"Unauthorised user for this action!!",
+        }
+    })
+    
+}
 }
 module.exports={
-    isLoggedIn,
+    isLoggedIn,isAdmin
 }
 ////

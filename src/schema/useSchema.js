@@ -36,6 +36,11 @@ const userSchema=new mongoose.Schema({
         type:String,
         require:[true,"Password is manditory!!!"],
         minlength:[6,"Password should be minimum six charecter long!!!"],
+    },
+    role:{
+        type:String,
+        enum:['USER','ADMIN'],
+        default:'USER',
     }
 },{
     timestamps:true,

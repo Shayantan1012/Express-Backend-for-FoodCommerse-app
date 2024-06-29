@@ -20,8 +20,9 @@ if(!isPasswordValid){
     throw{message:'Invalid Password !!!! Please try again!!!',statusCode: 401};
 }
 
+const user_role=user.role?user.role:"USER";
 //3.If the password is validated create a token in jwt
-const token = jwt.sign({ email: user.email, id: user._id }, JWT_SECRET, JWT_EXPIN);
+const token = jwt.sign({ email: user.email, id: user._id ,role:user_role}, JWT_SECRET, JWT_EXPIN);
 return token; 
 }
 module.exports={
