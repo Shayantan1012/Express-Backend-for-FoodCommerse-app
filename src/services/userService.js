@@ -1,4 +1,5 @@
 const {findUser,createUser}=require('../reprositories/userRepository');
+const {createCart}=require('../reprositories/cartRepository');
 class UserService{
 ///
 async registerUser(userDetails){
@@ -20,6 +21,7 @@ const newUser=await createUser({
 if(!newUser){
     throw{reason:'Something went wrong ,cannot create user',statusCode:500};
 }
+await createCart(newUser._id);
 return newUser;
 } 
 }

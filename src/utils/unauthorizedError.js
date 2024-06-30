@@ -5,4 +5,4 @@ class UnAuthorisedError extends AppError{
         super('User is not authorised properly!!!',401);
     }
 }
-module.exports=InternalServerError;
+module.exports=UnAuthorisedError;
