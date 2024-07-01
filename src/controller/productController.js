@@ -10,6 +10,7 @@ try{
         catagory:req.body.catagory,
         inStock:req.body.inStock,
         imagePath:req.file ?.path,
+        quantity:req.body.quantity,
     })
     return res.status(201).json({
         success:true,

@@ -17,6 +17,7 @@ const newUser=await createUser({
     firstname:userDetails.firstname,
     lastname:userDetails.lastname,
     mobilenumber:userDetails.mobilenumber,
+    role:userDetails.role,
 })
 if(!newUser){
     throw{reason:'Something went wrong ,cannot create user',statusCode:500};

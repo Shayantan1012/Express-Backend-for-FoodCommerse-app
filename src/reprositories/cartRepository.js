@@ -21,7 +21,8 @@ try{
 
 async function getCartByUserId(userId){
 try{
-const cart=await Cart.findOne({user:userId});
+const cart=await Cart.findOne({user:userId}).populate('items.product');
+console.log(cart);
 return cart;
 }catch(error){
 console.log(error);
