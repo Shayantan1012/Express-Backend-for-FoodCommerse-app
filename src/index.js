@@ -10,6 +10,7 @@ const uploader = require('./Middleware/multerMiddleware');
 const cloudinary=require('./config/cloudinaryConfig');
 const fs=require('fs/promises');
 const productRouter = require('./routes/productRoutes');
+const orderRoute = require('./routes/orderRoutes');
 const app=express();
 
 app.use(express.json());
@@ -20,6 +21,7 @@ app.use('/users',userRouter);
 app.use('/carts',cartRouter);
 app.use('/auth',authRouter);
 app.use('/products',productRouter)
+app.use('/orders',orderRoute);
 ///////////////////////////////////
 /*
 app.post('/photo',uploader.single('incomingfile'),async(req,res)=>{

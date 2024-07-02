@@ -1,10 +1,8 @@
 const User=require('../schema/useSchema');
-const Cart=require('../schema/cartSchema');
 
 async function findUser(parameters) {
     try{ 
-        const response=await User.findOne({...parameters});
-        console.log(response);
+        const response=await User.findById(parameters);
         return response;
     }catch(error){
 console.log(error);

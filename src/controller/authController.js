@@ -1,5 +1,20 @@
 const {loginUser}=require('../services/authService');
 
+
+async function logout(req,res){
+res.cookie("authToken",null,{
+    httpOnly:true,
+    secure:false,
+    maxAge:7*24*60*60*1000,
+});
+return res.status(200).json({
+    success:true,
+    message:"Log Out Successfully!!!!",
+    error:{},
+    data:{},
+    }
+)
+}
 async function login(req,res){
 const loginPayload=req.body;
 
@@ -27,4 +42,4 @@ return res.status(error.statusCode || 500).json({
 })
  }
 }
-module.exports={login};
+module.exports={login,logout};

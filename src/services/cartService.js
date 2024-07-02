@@ -1,6 +1,6 @@
 
 
-const {getCartByUserId}=require('../reprositories/cartRepository');
+const {getCartByUserId, clearCart}=require('../reprositories/cartRepository');
 const AppError = require('../utils/appError');
 const BadRequestError = require('../utils/badRequestError');
 const NotFoundError = require('../utils/notFoundError');
@@ -69,4 +69,14 @@ await product.save();
 console.log(cart);
 return cart;
 }
-module.exports={getCart,modifyCart};
+
+async function clearProductsFromCart(userId){
+try{
+    const response=await clearCart(userId);
+    return response;
+}catch(error){
+console.log(error);
+throw new AppError("Unable to Delete cart!!!!");
+}
+}
+module.exports={getCart,modifyCart,clearProductsFromCart};

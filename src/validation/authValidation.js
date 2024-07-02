@@ -41,7 +41,6 @@ This function checks is the autentication user is an Admin or not*/
 //Because we will call is Admin after is Logged in thats why we will recieve user details//
 async function isAdmin(req,res,next){
 const loggedInUser=req.user;
-console.log(loggedInUser);
 if(loggedInUser.role==="ADMIN"){
     next();
 }

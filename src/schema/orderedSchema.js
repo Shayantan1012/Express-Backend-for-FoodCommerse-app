@@ -1,5 +1,5 @@
 const mongoose=require('mongoose');
-const orderSchema=new mongoose.Sechema({
+const orderSchema=new mongoose.Schema({
     user:{
 type:mongoose.Schema.Types.ObjectId,
 required:true,
@@ -14,7 +14,7 @@ ref:'User',
             ref:'Product',
     },
     quantity: {
-        type:mongoose.Schema.Types.ObjectId,
+        type:Number,
         require:true,
         default:1,
     }
