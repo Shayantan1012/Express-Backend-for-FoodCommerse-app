@@ -34,7 +34,7 @@ app.post('/photo',uploader.single('incomingfile'),async(req,res)=>{
     });
 })*/
 ////////////////////////////////////////////
-app.post('/ping',isLoggedIn,(req,res)=>{
+app.get('/ping',isLoggedIn,(req,res)=>{
     console.log(req.body);
     console.log(req.cookies);
     return res.json({message:"Pong"});
