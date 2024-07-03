@@ -4,7 +4,7 @@
   "description": "This is a description",
   "main": "index.js",
   "scripts": {
-   "start": "node app.js"
+   "start": "npx nodemon src/index.js"
   },
   "author": "",
   "license": "ISC",
