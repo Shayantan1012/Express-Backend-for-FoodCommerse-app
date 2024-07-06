@@ -2,7 +2,7 @@ const User=require('../schema/useSchema');
 
 async function findUser(parameters) {
     try{ 
-        const response=await User.findById(parameters);
+        const response=await User.findOne({...parameters});
         return response;
     }catch(error){
 console.log(error);
