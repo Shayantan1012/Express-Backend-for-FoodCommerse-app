@@ -13,10 +13,10 @@ const productRouter = require('./routes/productRoutes');
 const orderRoute = require('./routes/orderRoutes');
 const app=express();
 const cors=require('cors');
-
+const {FRONTEND_URL}=require('./config/serverConfig');
 
 app.use(cors({
-    origin:'https://my-pizza-app-1.netlify.app',
+    origin:FRONTEND_URL,
     credentials:true,
 }));
 app.use(express.json());
