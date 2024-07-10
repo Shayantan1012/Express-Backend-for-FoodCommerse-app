@@ -16,7 +16,7 @@ const cors=require('cors');
 
 
 app.use(cors({
-    origin:'http://localhost:5173',
+    origin:'https://my-pizza-app-1.netlify.app',
     credentials:true,
 }));
 app.use(express.json());
