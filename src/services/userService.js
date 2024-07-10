@@ -5,7 +5,7 @@ class UserService{
 async registerUser(userDetails){
 const user=await findUser(
 {email:userDetails.email,
-mobilenumber : userDetails.mobilenumber,
+mobileNumber : userDetails.mobileNumber,
 }
 );
 if(user){
@@ -14,11 +14,11 @@ if(user){
 const newUser=await createUser({
     email:userDetails.email,
     password:userDetails.password,
-    firstname:userDetails.firstname,
-    lastname:userDetails.lastname,
-    mobilenumber:userDetails.mobilenumber,
+    firstName:userDetails.firstName,
+   // lastName:userDetails.lastName,
+    mobileNumber:userDetails.mobileNumber,
     role:userDetails.role,
-    address:userDetails.address,
+   // address:userDetails.address,
 })
 if(!newUser){
     throw{reason:'Something went wrong ,cannot create user',statusCode:500};

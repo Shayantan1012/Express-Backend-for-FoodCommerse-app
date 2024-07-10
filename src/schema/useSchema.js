@@ -1,7 +1,7 @@
 const mongoose=require('mongoose');
 const bcrypt=require('bcrypt');
 const userSchema=new mongoose.Schema({
-    firstname:{
+    firstName:{
         type:String,
         require:[true,"The Firstname is required!!!"],
         minlength:[5,"The Name must be minimum 5 charecters!!!"],
@@ -9,15 +9,15 @@ const userSchema=new mongoose.Schema({
         trim:[true],
         maxlength:[20,"First name must be less than or equal to 20 charecters!!!"],
     },
-    lastname:{
+    lastName:{
         type:String,
-        require:[true,"The Firstname is required!!!"],
+       // require:[true,"The Firstname is required!!!"],
         minlength:[5,"The Name must be minimum 5 charecters!!!"],
         lowercase:[true],
         trim:[true],
         maxlength:[20,"First name must be less than or equal to 20 charecters!!!"],
     },
-    mobilenumber:{
+    mobileNumber:{
         type:String,
         trim:[true],
         unique:[true,"Mobile number must be unique!!!"],
@@ -44,7 +44,7 @@ const userSchema=new mongoose.Schema({
     },
     address:{
         type:String,
-        require:true,
+     //   require:true,
         
     }
 },{

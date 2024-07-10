@@ -5,12 +5,11 @@ const InternalServerError = require('../utils/internalServerError');
 const NotFoundError = require('../utils/notFoundError');
 
 async function createProduct(productDetails){
-        
 const imagePath=productDetails.imagePath;
 console.log(imagePath);
 if(imagePath){
     try{    const cloudanaryResponse= await  cloudinary.uploader.upload(imagePath);
-        console.log(cloudanaryResponse);
+            console.log(cloudanaryResponse);
             var productImage=cloudanaryResponse.secure_url;
             await fs.unlink(imagePath);
     }
@@ -19,9 +18,10 @@ console.log(error);
 throw new InternalServerError();
     }
 }
+console.log(productImage);
 const product=await ProductRepositry.createProduct({
-    ...productDetails,
-    productImage:productImage,
+   ... productDetails,
+  productImage:productImage,
 })
 
 return product;
@@ -35,6 +35,13 @@ async function getProductById(productId){
     return product;
 }
 
+async function getAllProductsData(){
+    var product=await ProductRepositry.getAllProducts();
+    if(!product){
+        throw new NotFoundError('product');
+    }
+    return product;
+}
 async function deleteProductById(productId){
     var response=await ProductRepositry.deleteProductById(productId);
     if(!response || null){
@@ -44,6 +51,6 @@ async function deleteProductById(productId){
 
 }
     module.exports={
-    createProduct,getProductById,deleteProductById,
+    createProduct,getProductById,deleteProductById,getAllProductsData
 }
 ///

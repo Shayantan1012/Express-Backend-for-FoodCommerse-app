@@ -5,7 +5,7 @@ const BadRequestError = require("../utils/badRequestError");
 const InternalServerError = require("../utils/internalServerError");
 const NotFoundError = require("../utils/notFoundError");
 
-async function createOrder(userId,paymentMethod){
+async function createOrder(userId,paymentMethod,address){
   const user=await findUser(userId);
   const cart=await getCartByUserId(userId);
         if(!cart){
@@ -24,7 +24,7 @@ async function createOrder(userId,paymentMethod){
   cart.items.forEach((cartItems)=>{
   orderObject.totalPrice+=(cartItems.quantity*cartItems.product.price);
   })
-  orderObject.address=user.address;
+  orderObject.address=address;
   orderObject.paymentMethod=paymentMethod;
   const order= await createNewOrder(orderObject);
 if(!order){

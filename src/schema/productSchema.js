@@ -1,10 +1,10 @@
 const mongoose=require('mongoose');
-const productSchema=mongoose.Schema({
+const productSchema=new mongoose.Schema({
     productName:{
         type:String,
         require:[true,"Please give the product Name!!!"],
         maxlength:[20,"First name must be less than or equal to 20 charecters!!!"],
-        trim:[true],
+        trim:true,
     },
     description:{
         type:String,
@@ -24,10 +24,10 @@ const productSchema=mongoose.Schema({
     },
     catagory:{
         type:String,
-        enum:['Veg','Non-Veg','Drinks','Sides'],
-        default:'Veg',
+        enum:['veg','non-veg','drinks','sides'],
+        default:'veg',
     },
-    inStock:{
+   inStock:{
         type:Boolean,
         require:[true,"Stock status is required!!!"],
         default:true,

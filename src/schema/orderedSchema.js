@@ -35,8 +35,8 @@ ref:'User',
     },
     paymentMethod:{
   type:String,
-  enum:['ONLINE','CASH'],
-  default:'CASH',
+  enum:['ONLINE','OFFLINE'],
+  default:'OFFLINE',
     }
 },{
     timestamps:true,

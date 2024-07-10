@@ -3,7 +3,8 @@ const AppError = require("../utils/appError");
 
 async function createNewOrder(req,res){
 try{
-const order=await createOrder(req.user.id,req.body.paymentMethod)
+    console.log("This is request->",req.body);
+const order=await createOrder(req.user.id,req.body.paymentMethod,req.body.address)
 return res.status(201).json({
  success:true,
  message:"Successfully created the Order!!!",

@@ -21,7 +21,7 @@ const loginPayload=req.body;
  try{
 const response=await loginUser(loginPayload);
 
-res.cookie("authToken",response,{
+res.cookie("authToken",response.token,{
     httpOnly:true,
     secure:false,
     maxAge:7*24*60*60*1000,
@@ -29,7 +29,10 @@ res.cookie("authToken",response,{
 return res.status(200).json({
 success:true,
 message:'Logged IN successfully!!!!',
-data:{},
+data:{
+    userRole:response.userRole,
+    userData:response.userData,
+},
 error:{},
 })
  }///

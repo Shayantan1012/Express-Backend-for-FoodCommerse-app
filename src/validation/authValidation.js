@@ -4,6 +4,7 @@ const { JWT_SECRET } = require('../config/serverConfig');
 
 async function isLoggedIn(req,res,next){
 const token =req.cookies["authToken"];
+
 if(!token){
     return res.status(401).json({
         success:false,
@@ -21,7 +22,27 @@ req.user={
    }
    
 }catch(error){
+    console.log(error.name);
+    if(error.name==='TokenExpiredError'){
+        res.cookie("authToken",null,{
+            httpOnly:true,
+            secure:false,
+            maxAge:7*24*60*60*1000,
+        });
+return res.status(200).json({
+    success:true,
+    message:'Log Out Successfully!!!',
+    error:{},
+    data:{},
+})        
+    }
 
+return res.status(401).json({
+    success:false,
+    message:'',
+    error:error,
+    data:{},
+})        
 }
 
 if(!decoded){

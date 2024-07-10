@@ -1,9 +1,12 @@
 const InternalServerError = require('../utils/internalServerError');
 const Product=require('../schema/productSchema');
 const BadRequestError=require('../utils/badRequestError');
+const mongoose=require('mongoose')
 async function createProduct(productDetails){
     try{
+
         const response=await Product.create(productDetails);
+
         return response;        
     }
 catch(error){
@@ -28,6 +31,16 @@ catch(error){
     throw new InternalServerError();
 }
 }
+async function getAllProducts(){
+    try{
+        const products=await Product.find({});
+        return products;        
+    }
+catch(error){
+    console.log(error);
+    throw new InternalServerError();
+}
+}
 
 async function deleteProductById(productId){
     try{
@@ -41,5 +54,5 @@ catch(error){
 }
 
     module.exports={
-    createProduct,getProductById,deleteProductById
+    createProduct,getProductById,deleteProductById,getAllProducts
 }

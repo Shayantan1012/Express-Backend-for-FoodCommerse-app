@@ -1,15 +1,14 @@
-const {createProduct,getProductById,deleteProductById}=require('../services/productService');
+const {createProduct,getProductById,deleteProductById, getAllProductsData}=require('../services/productService');
 const AppError = require('../utils/appError');
  async function addProduct(req,res){
-    console.log(req.body);
 try{
     const product=await createProduct({
         productName:req.body.productName,
         description:req.body.description,
         price:req.body.price,
         catagory:req.body.catagory,
-        inStock:req.body.inStock,
-        imagePath:req.file ?.path,
+        inStock:(req.body.inStock==='true')?true:false,
+        imagePath:req.file?.path,
         quantity:req.body.quantity,
     })
     return res.status(201).json({
@@ -95,5 +94,31 @@ catch(error){
     
 }
  }
-
-module.exports={addProduct,getProduct,deleteProduct};
+ async function getProducts(req,res){
+    try{
+    const response=await getAllProductsData();
+    return res.status(201).json({
+        success:true,
+        message:"Product is present!!!",
+        data:{response},
+        error:{},
+    })}catch(error){
+    if(error instanceof AppError){
+        return res.status(error.statusCode || 500).json({
+            success:false,
+            message:error.message,
+            data:{},
+            error:error,        
+    });
+    }
+    console.log(error);
+    return res.status(error.statusCode || 500).json({
+    success:false,
+    message:'Something went wrong!!',
+    data:{},
+    error:error,
+    })
+    
+    }
+     }
+    module.exports={addProduct,getProduct,getProducts,deleteProduct};
