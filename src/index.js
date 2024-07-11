@@ -6,17 +6,14 @@ const userRouter=require('./routes/useRoutes');
 const authRouter=require('./routes/authRouter');
 const cookieParser = require('cookie-parser');
 const { isLoggedIn } = require('./validation/authValidation');
-/*const uploader = require('./Middleware/multerMiddleware');
-const cloudinary=require('./config/cloudinaryConfig');
-const fs=require('fs/promises');*/
 const productRouter = require('./routes/productRoutes');
 const orderRoute = require('./routes/orderRoutes');
 const app=express();
 const cors=require('cors');
-const {FRONTEND_URL}=require('./config/serverConfig');
+const serverConfig = require('./config/serverConfig');
 
 app.use(cors({
-    origin:FRONTEND_URL,
+    origin: serverConfig.FRONTEND_URL,
     credentials:true,
 }));
 app.use(express.json());

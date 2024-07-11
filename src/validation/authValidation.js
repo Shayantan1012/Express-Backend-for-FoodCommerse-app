@@ -1,10 +1,10 @@
 const jwt=require('jsonwebtoken');
 
-const { JWT_SECRET ,COOKIE_SECURE,FRONTEND_URL} = require('../config/serverConfig');
+const { JWT_SECRET } = require('../config/serverConfig');
+const serverConfig = require('../config/serverConfig');
 
 async function isLoggedIn(req,res,next){
 const token =req.cookies["authToken"];
-
 if(!token){
     return res.status(401).json({
         success:false,
@@ -13,8 +13,11 @@ if(!token){
         message:"No Auth token Provided!!!",
     })
 }
+console.log("This is token->",token);
 try{
 var decoded=jwt.verify(token,JWT_SECRET);
+console.log("this is decoded res->",decoded);
+
 req.user={
     email:decoded.email,
     id:decoded.id,
@@ -22,14 +25,11 @@ req.user={
    }
    
 }catch(error){
-    console.log(error.name);
+    console.log(error);
     if(error.name==='TokenExpiredError'){
         res.cookie("authToken",null,{
             httpOnly:true,
-            secure:false,
-            sameSite:"None",
-            secure:COOKIE_SECURE,
-            domain:FRONTEND_URL,
+            secure:serverConfig.COOKIE_SECURE,
             maxAge:7*24*60*60*1000,
         });
 return res.status(200).json({
